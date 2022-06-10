@@ -17,6 +17,12 @@
   color: #61dafb;
 }
 
+.GameContainer {
+  display: flex;
+  border-radius: 3px;
+  border-color: #0450e7;
+}
+
 .GameHeader {
   background-color: black;
   position: absolute;
