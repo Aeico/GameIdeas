@@ -3,18 +3,21 @@ import React from 'react';
 
 const axios = require('axios').default;
 
-export async function SearchGames(name) {
+export async function GetGameImage(id) {
     const axios = require('axios').default;
-    
-    var arr = []
 
-    await axios.get('http://127.0.0.1:5000/game/'+name)
+    var arr = ""
+
+    var imgId = id
+
+    await axios.get('http://127.0.0.1:5000/img/'+imgId)
     .then(function (response) {
-      arr = response.data
+      console.log(response)
+      arr = response.data['URL'];
     }).catch(function (error){
       console.log(error)
     })
     return (arr)
 }
 
-export default SearchGames;
+export default GetGameImage;
