@@ -32,6 +32,10 @@
   padding-bottom: 1em;
 }
 
+.Search { 
+  display: flex;
+}
+
 /* @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

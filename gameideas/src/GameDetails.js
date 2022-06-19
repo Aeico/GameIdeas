@@ -5,26 +5,36 @@ import SearchGames from './SearchGames';
 
 function GameDetails(props) {
 
-    const [games, setGames] = useState([]);
+    var gameName = props.SearchGameName;
+
+    const [game, setGame] = useState([]);
+
+    const baseImg = 'ypa0eo6w0nouqaibnwdl';
+
+    const [image, setImage] = useState(baseImg);
 
     const gameReply = async () => {
-        var resp = await SearchGames('Halo');
-        setGames(resp['game_name']);
+        var resp = await SearchGames(gameName);
+        setGame(resp['game_name']);
+        setImage(resp['url'][props.number]);
     };
 
     useEffect(() => {
         gameReply();
     }, []);
-
+    useEffect(() => {
+        if (image != baseImg) { //Temp fix for Image loss
+            setImageUrl("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + image + ".jpg")
+        }
+    }, [image]); 
+ 
     var qual = ImgQuality(0);
 
-    var imgId = "ypa0eo6w0nouqaibnwdl";
-
-    var imageUrl = "https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + imgId + ".jpg";
+    const [imageUrl, setImageUrl] = useState("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + image + ".jpg");
 
     return(
     <div className='GameDetails'>
-        <div>{games[props.number]}</div>
+        <div>{game[props.number]}</div>
         <img src={imageUrl}></img>
     </div>);
 }
