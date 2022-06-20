@@ -3,9 +3,12 @@ import React, { Suspense, useState, useEffect } from 'react';
 import ImgQuality from './ImgQuality';
 import SearchGames from './SearchGames';
 
-function GameDetails(props) {
+function GameDetails(props, searchTerm) {
 
     var gameName = props.SearchGameName;
+    if (gameName == null) {
+        gameName = searchTerm;
+    }
 
     const [game, setGame] = useState([]);
 

@@ -2,7 +2,6 @@ import './App.css';
 import React, { useState } from 'react';
 
 function Search(props) {
-    //props.SearchTerm
     const [search, setSearch] = useState(props.SearchTerm)
 
     const searchChanged = ((event) => {
