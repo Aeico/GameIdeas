@@ -21,7 +21,7 @@ function GameDetails(props) {
 
     useEffect(() => {
         gameReply();
-    }, []);
+    },[props.SearchGameName]);
     useEffect(() => {
         if (image != baseImg) { //Temp fix for Image loss
             setImageUrl("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + image + ".jpg")

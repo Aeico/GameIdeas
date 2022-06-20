@@ -8,20 +8,19 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('Diablo')
 
   useEffect (() => { 
-
+    console.log('Changed ' + searchTerm)
   },[searchTerm])
 
   return (
     <div className="App">
       <header className="App-header">
         <GameHeader/>
-        <Search SearchTerm={searchTerm}></Search>
+        <Search SearchTerm={searchTerm} SetSearchTerm={setSearchTerm}></Search>
         <div className='GameContainer'>
           <GameDetails SearchGameName={searchTerm} number='0'/>
           <GameDetails SearchGameName={searchTerm} number='1'/>
           <GameDetails SearchGameName={searchTerm} number='2'/>
           <GameDetails SearchGameName={searchTerm} number='3'/>
-          <GameDetails SearchGameName={searchTerm} number='4'/>
         </div>
       </header>
     </div>
