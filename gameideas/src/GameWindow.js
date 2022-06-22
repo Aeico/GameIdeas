@@ -5,33 +5,66 @@ import ImgQuality from './ImgQuality';
 function GameWindow(props) {
 
     const [name, setName] = useState(props.name)
-    const [url, setUrl] = useState(props.url)
-    const [fullurl, setFullurl] = useState("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + url + ".jpg")
+    const [screenUrl, setScreenUrl] = useState(props.url)
+    const [screenFullurl, setScreenFullurl] = useState("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + screenUrl + ".jpg")
+    const [coverUrl, setCoverUrl] = useState(props.cover)
+    const [coverFullurl, setCoverFullurl] = useState("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + coverUrl + ".jpg")
+
 
     var qual = ImgQuality(0);
 
-    if (name == null) {
+    if (name == null || screenUrl == null || coverUrl == null) {
         setName('loading')
-        setUrl('sc92is')
-        setFullurl("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + url + ".jpg")
+        setScreenUrl('')
+        setScreenFullurl("/logo192.png")
+        setCoverUrl('')
+        setCoverFullurl("/logo192.png")
     }
 
+    //Name update
     useEffect (() =>{
         setName(props.name)
     },[props.name])
 
+    //Screenshot update
     useEffect (() =>{
-        setUrl(props.url)
+        if (props.url == null) {
+            setScreenUrl('undefined')
+        } else {
+            setScreenUrl(props.url)
+        }
     },[props.url])
 
     useEffect (() =>{
-        setFullurl("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + url + ".jpg")
-    },[url])
+        if (coverUrl != 'undefined') {
+            setScreenFullurl("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + screenUrl + ".jpg")
+        } else {
+            setScreenFullurl("/logo192.png")
+        }
+    },[screenUrl])
+
+    //Cover image update
+    useEffect (() =>{
+        if (props.cover == null) {
+            setCoverUrl('undefined')
+        } else {
+            setCoverUrl(props.cover)
+        }
+    },[props.cover])
+
+    useEffect (() =>{
+        if (coverUrl != 'undefined') {
+            setCoverFullurl("https://images.igdb.com/igdb/image/upload/t_" + 'cover_big' + "/" + coverUrl + ".jpg")
+        } else {
+            setCoverFullurl("/logo192.png")
+        }
+    },[coverUrl])
 
     return(
     <div className='GameWindow'>
         <div>{name}</div>
-        <img src={fullurl}></img>
+        <img src={screenFullurl}></img>
+        <img src={coverFullurl}></img>
     </div>
     );
 }
