@@ -4,67 +4,26 @@ import ImgQuality from './ImgQuality';
 
 function GameWindow(props) {
 
-    const [name, setName] = useState(props.name)
-    const [screenUrl, setScreenUrl] = useState(props.url)
-    const [screenFullurl, setScreenFullurl] = useState("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + screenUrl + ".jpg")
-    const [coverUrl, setCoverUrl] = useState(props.cover)
-    const [coverFullurl, setCoverFullurl] = useState("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + coverUrl + ".jpg")
+    const baseUrl = 'https://images.igdb.com/igdb/image/upload/t_';
+    const coverQual = ImgQuality(1,'cover');
 
+    const [gameData, setGameData] = useState(props.data)
 
-    var qual = ImgQuality(0);
+    const [largeWindow, setLargeWindow] = useState(false)
 
-    if (name == null || screenUrl == null || coverUrl == null) {
-        setName('loading')
-        setScreenUrl('')
-        setScreenFullurl("/logo192.png")
-        setCoverUrl('')
-        setCoverFullurl("/logo192.png")
+    useEffect (() =>{
+        setGameData(props.data)
+    },[props.data])
+
+    const openGame = () => {
+        console.log("hi")
     }
-
-    //Name update
-    useEffect (() =>{
-        setName(props.name)
-    },[props.name])
-
-    //Screenshot update
-    useEffect (() =>{
-        if (props.url == null) {
-            setScreenUrl('undefined')
-        } else {
-            setScreenUrl(props.url)
-        }
-    },[props.url])
-
-    useEffect (() =>{
-        if (coverUrl != 'undefined') {
-            setScreenFullurl("https://images.igdb.com/igdb/image/upload/t_" + qual + "/" + screenUrl + ".jpg")
-        } else {
-            setScreenFullurl("/logo192.png")
-        }
-    },[screenUrl])
-
-    //Cover image update
-    useEffect (() =>{
-        if (props.cover == null) {
-            setCoverUrl('undefined')
-        } else {
-            setCoverUrl(props.cover)
-        }
-    },[props.cover])
-
-    useEffect (() =>{
-        if (coverUrl != 'undefined') {
-            setCoverFullurl("https://images.igdb.com/igdb/image/upload/t_" + 'cover_big' + "/" + coverUrl + ".jpg")
-        } else {
-            setCoverFullurl("/logo192.png")
-        }
-    },[coverUrl])
 
     return(
     <div className='GameWindow'>
-        <div>{name}</div>
-        <img src={screenFullurl}></img>
-        <img src={coverFullurl}></img>
+        <div className='GameName'>{gameData['game_name'][props.num]}</div>
+        <img className='CoverImage' onClick={openGame} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
+        <div className='Summary'>{gameData['summary'][props.num]}</div>
     </div>
     );
 }
