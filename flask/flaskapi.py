@@ -12,7 +12,7 @@ def getGame(name):
 
     url = "https://api.igdb.com/v4/games"
     params = {
-        'fields':'name,screenshots,cover',
+        'fields':'name,screenshots,cover,summary',
         'search':name
     }
     authdetails = {
@@ -22,10 +22,12 @@ def getGame(name):
     game_fetch = requests.post(url, params=params, headers=authdetails).json()
     
     game_name = []
+    game_summary = []
     game_screenshot = []
     for obj in game_fetch:
         if 'screenshots' in obj:
             game_name.append(obj['name'])
+            game_summary.append(obj['summary'])
             game_screenshot.append(obj['screenshots'][0])
             
     url2 = "https://api.igdb.com/v4/screenshots"
@@ -118,7 +120,7 @@ def getGame(name):
     for obj in new_cover_fetch:
         cover_url.append(obj['image_id'])     
 
-    return jsonify(game_name=game_name, screen_id=game_screenshot, url=image_url, cover=cover_url)
+    return jsonify(game_name=game_name, screen_id=game_screenshot, url=image_url, cover=cover_url, summary=game_summary)
 
 """ CORS(app)
 @app.route("/img/<id>")

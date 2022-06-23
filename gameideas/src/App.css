@@ -25,11 +25,50 @@
 
 .GameHeader {
   background-color: black;
-  position: absolute;
   top: 0;
   width: 100%;
   padding-top: 0.5em;
   padding-bottom: 1em;
+}
+
+.GameWindow {
+  position: relative;
+  background-color: #101010;
+  width: 20em;
+  height: 352px;
+  font-size: 0.8em;
+  margin: 10px;
+  border: 2px #ffffff;
+  border-radius: 10px;
+  border-style: solid;
+}
+
+.GameName {
+  display: flex;
+  position: absolute;
+  right: 10px;
+}
+
+.CoverImage {
+  height: 346px;
+  width: 260px;
+  border-radius: 20px;
+  border: 3px #800000;
+  border-style: groove;
+  left: 0px;
+  position: absolute;
+}
+
+.Summary {
+  width: 280px;
+  right: 5px;
+  position: absolute;
+  top: 40px;
+  font-size: 0.6em;
+}
+
+.screenshot{
+  top: 0;
 }
 
 .Search { 

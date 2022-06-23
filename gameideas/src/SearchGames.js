@@ -1,7 +1,4 @@
 import './App.css';
-import React from 'react';
-
-const axios = require('axios').default;
 
 export async function SearchGames(name) {
     const axios = require('axios').default;

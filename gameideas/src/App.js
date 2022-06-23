@@ -1,6 +1,6 @@
 import './App.css';
 import GameHeader from './GameHeader';
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Search from './Search';
 import SearchGames from './SearchGames';
 import GameWindow from './GameWindow';
@@ -8,19 +8,16 @@ import GameWindow from './GameWindow';
 function App() {
   const [searchTerm, setSearchTerm] = useState('Diablo');
 
-  const [names, setNames] = useState([])
-
-  const [screenUrls, setScreenUrls] = useState([])
-
-  const [coverUrls, setCoverUrls] = useState([])
-  
+  const [gameData, setGameData] = useState({
+    cover: [],
+    game_name: [],
+    summary: [],
+    url: []
+  })
 
   const gameReply = async () => {
-    var resp = await SearchGames(searchTerm);
-    console.log(resp)
-    setNames(resp['game_name'])
-    setScreenUrls(resp['url'])
-    setCoverUrls(resp['cover'])
+    const resp = await SearchGames(searchTerm);
+    setGameData(resp)
   };
 
   useEffect (() => { 
@@ -33,10 +30,19 @@ function App() {
         <GameHeader/>
         <Search SearchTerm={searchTerm} SetSearchTerm={setSearchTerm}></Search>
         <div className='GameContainer'>
-          <GameWindow name={names[0]} url={screenUrls[0]} cover={coverUrls[0]} ></GameWindow>
-          <GameWindow name={names[1]} url={screenUrls[1]} cover={coverUrls[1]}></GameWindow>
-          <GameWindow name={names[2]} url={screenUrls[2]} cover={coverUrls[2]}></GameWindow>
-          <GameWindow name={names[3]} url={screenUrls[3]} cover={coverUrls[3]}></GameWindow>
+          <GameWindow data={gameData} num={0}></GameWindow>
+          <GameWindow data={gameData} num={1}></GameWindow>
+          <GameWindow data={gameData} num={2}></GameWindow>
+        </div>
+        <div className='GameContainer'>
+          <GameWindow data={gameData} num={3}></GameWindow>
+          <GameWindow data={gameData} num={4}></GameWindow>
+          <GameWindow data={gameData} num={5}></GameWindow>
+        </div>
+        <div className='GameContainer'>
+          <GameWindow data={gameData} num={6}></GameWindow>
+          <GameWindow data={gameData} num={7}></GameWindow>
+          <GameWindow data={gameData} num={8}></GameWindow>
         </div>
       </header>
     </div>
