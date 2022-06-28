@@ -23,7 +23,6 @@ function GameWindow(props) {
     <div className='GameWindow'>
         <div className='GameName'>{gameData['game_name'][props.num]}</div>
         <img className='CoverImage' onClick={openGame} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
-        <div className='Summary'>{gameData['summary'][props.num]}</div>
     </div>
     );
 }
