@@ -16,7 +16,7 @@ function Search(props) {
     return(
     <form>
         <div className='Search'>
-            <label for="name">Search for game: </label>
+            <label htmlFor="name">Search for game: </label>
             <input value={search} onChange={searchChanged}></input>
             <button onClick={searchPressed}>Submit</button>
         </div>
