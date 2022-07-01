@@ -8,11 +8,18 @@ function GameWindow(props) {
     const coverQual = ImgQuality(1,'cover');
 
     const [gameData, setGameData] = useState(props.data)
+    
+    const [fontSize, setFontSize] = useState('26')
 
     const [largeWindow, setLargeWindow] = useState(false)
 
     useEffect (() =>{
         setGameData(props.data)
+        if (gameData['game_name'][props.num] != undefined) {
+            if ((gameData['game_name'][props.num]).length > 15) {
+                setFontSize(26-((gameData['game_name'][props.num]).length)/10)
+            }
+        }
     },[props.data])
 
     const openGame = () => {
@@ -21,8 +28,10 @@ function GameWindow(props) {
 
     return(
     <div className='GameWindow'>
-        <div className='GameName'>{gameData['game_name'][props.num]}</div>
-        <img className='CoverImage' onClick={openGame} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
+        <div className='Cover'>
+            <img className='CoverImage' onClick={openGame} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
+            <div className='CoverText' style={{fontSize : fontSize+'px'}}>{gameData['game_name'][props.num]}</div>
+        </div>
     </div>
     );
 }
