@@ -25,10 +25,14 @@ def getGame(name):
     game_summary = []
     game_screenshot = []
     for obj in game_fetch:
-        if 'screenshots' in obj:
-            game_name.append(obj['name'])
-            game_summary.append(obj['summary'])
-            game_screenshot.append(obj['screenshots'][0])
+        if 'screenshots' and 'summary' in obj:
+            try: 
+                game_name.append(obj['name'])
+                game_summary.append(obj['summary'])
+                game_screenshot.append(obj['screenshots'][0])
+            except:
+                print('Game missing name, summary, or screenshot')
+            
             
     url2 = "https://api.igdb.com/v4/screenshots"
     
