@@ -33,16 +33,15 @@ function App() {
           <GameWindow data={gameData} num={0}></GameWindow>
           <GameWindow data={gameData} num={1}></GameWindow>
           <GameWindow data={gameData} num={2}></GameWindow>
-        </div>
-        <div className='GameContainer'>
           <GameWindow data={gameData} num={3}></GameWindow>
           <GameWindow data={gameData} num={4}></GameWindow>
-          <GameWindow data={gameData} num={5}></GameWindow>
         </div>
         <div className='GameContainer'>
+          <GameWindow data={gameData} num={5}></GameWindow>
           <GameWindow data={gameData} num={6}></GameWindow>
           <GameWindow data={gameData} num={7}></GameWindow>
           <GameWindow data={gameData} num={8}></GameWindow>
+          <GameWindow data={gameData} num={9}></GameWindow>
         </div>
       </header>
     </div>
