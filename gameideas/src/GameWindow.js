@@ -22,14 +22,10 @@ function GameWindow(props) {
         }
     },[props.data])
 
-    const openGame = () => {
-        console.log("hi")
-    }
-
     return(
     <div className='GameWindow'>
         <div className='Cover'>
-            <img className='CoverImage' onClick={openGame} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
+            <img className='CoverImage' onClick={() => props.openGame(props.num)} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
             <div className='CoverText' style={{fontSize : fontSize+'px'}}>{gameData['game_name'][props.num]}</div>
         </div>
     </div>
