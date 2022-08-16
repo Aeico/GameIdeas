@@ -1,6 +1,9 @@
 from flask import Flask,jsonify,json,request
 import requests
 from flask_cors import CORS, cross_origin
+import os
+from dotenv import load_dotenv, find_dotenv
+
 
 app = Flask(__name__)
 CORS(app)
@@ -8,7 +11,11 @@ CORS(app)
 @app.route("/game/<name>")
 @cross_origin()
 
+
 def getGame(name):
+
+    load_dotenv(find_dotenv())
+    BEARER = os.environ['BEARER']
 
     url = "https://api.igdb.com/v4/games"
     params = {
@@ -17,7 +24,7 @@ def getGame(name):
     }
     authdetails = {
         'Client-ID':'l0ejtj3vxzb0686st38daa6k9689it',
-        'Authorization':'Bearer o6yglmjjfygddet6kq5icb2dlxzmgk'
+        'Authorization':BEARER
     }
     game_fetch = requests.post(url, params=params, headers=authdetails).json()
     
@@ -60,7 +67,7 @@ def getGame(name):
 
     authdetails = {
         'Client-ID':'l0ejtj3vxzb0686st38daa6k9689it',
-        'Authorization':'Bearer o6yglmjjfygddet6kq5icb2dlxzmgk'
+        'Authorization':BEARER
         }
     image_fetch = requests.post(url2, data=payload, headers=authdetails).json()
     
@@ -106,7 +113,7 @@ def getGame(name):
 
     authdetails = {
         'Client-ID':'l0ejtj3vxzb0686st38daa6k9689it',
-        'Authorization':'Bearer o6yglmjjfygddet6kq5icb2dlxzmgk'
+        'Authorization':BEARER
         }
     cover_fetch = requests.post(url3, data=payload, headers=authdetails).json()
     
@@ -142,7 +149,7 @@ def getImages(id):
 
     authdetails = {
         'Client-ID':'l0ejtj3vxzb0686st38daa6k9689it',
-        'Authorization':'Bearer o6yglmjjfygddet6kq5icb2dlxzmgk'
+        'Authorization':BEARER
         }
     image_fetch = requests.post(url, body=params, headers=authdetails).json()
     print(image_fetch.status_code)

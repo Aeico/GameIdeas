@@ -28,4 +28,6 @@ keys.md
 flaskvenv/
 __pychache__/
 /flaskvenv
+/venv
 /__pychache__
+.env
