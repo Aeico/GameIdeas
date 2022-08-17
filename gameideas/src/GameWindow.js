@@ -2,6 +2,10 @@ import './App.css';
 import React, { useEffect, useState } from 'react';
 import ImgQuality from './ImgQuality';
 
+/* Game window that contains Cover Image and name of game
+
+*/
+
 function GameWindow(props) {
 
     const baseUrl = 'https://images.igdb.com/igdb/image/upload/t_';
@@ -25,7 +29,7 @@ function GameWindow(props) {
     return(
     <div className='GameWindow'>
         <div className='Cover'>
-            <img className='CoverImage' onMouseEnter={() => console.log('hi')} onClick={() => props.openGame(props.num)} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
+            <img className='CoverImage' onClick={() => props.openGame(props.num)} src={baseUrl+coverQual+"/"+gameData['cover'][props.num]+".jpg"}></img>
             <div className='CoverText' style={{fontSize : fontSize+'px'}}>{gameData['game_name'][props.num]}</div>
         </div>
     </div>
