@@ -16,8 +16,8 @@ function Search(props) {
     return(
     <form>
         <div className='Search'>
-            <label htmlFor="name">Search for game: </label>
-            <input value={search} onChange={searchChanged}></input>
+            <label htmlFor="name">🔎: </label>
+            <input type="text" value={search} onChange={searchChanged}></input>
             <button onClick={searchPressed}>Submit</button>
         </div>
     </form>
